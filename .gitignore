@@ -2,4 +2,5 @@
 
 .hg/*
 .hgignore
+.idea
 .idea/*
