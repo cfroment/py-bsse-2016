@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% for criterion in criteria %}
+<div class="panel panel-primary">
+    <div class="panel-heading">{{criterion.name}} ({{criterion.weight}}%) : <b>{{grades[criterion.id]}}</b>/5
+        <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+    </div>
+    <div class="panel-body">
+        <ul>
+        {% for comment in comments[criterion.id] %}
+            <li><i>{{comment}}</i></li>
+        {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endfor %}
+<script src="{{ url_for('static', filename='scripts/bsse.js') }}"></script>
+{% endblock %}
+

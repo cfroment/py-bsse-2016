@@ -1,0 +1,128 @@
+/* Header style */
+header {
+  background-color: #2B2B2B;
+  height: 35px;
+  width: 100%;
+  opacity: .8;
+  margin-bottom: 10px;
+}
+ 
+header h1.logo {
+  margin: 0;
+  font-size: 1.7em;
+  color: #fff;
+  text-transform: uppercase;
+  float: left;
+}
+ 
+header h1.logo:hover {
+  color: #fff;
+  text-decoration: none;
+}
+ 
+/*
+ * Center the body content
+ */
+  
+.container {
+  width: 1000px;
+  margin: 0 auto;
+}
+ 
+div.jumbo {
+  padding: 10px 0 30px 0;
+  background-color: #eeeeee;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+
+/* Body style */
+
+body {
+	font-family: "calibri", "ubuntu", sans-serif; 
+}
+
+h2 {
+	background-color: f4f4f4;
+}
+
+/* Table style */
+table {
+	border: 1px solid #cccccc ;
+	border-collapse: collapse;
+}
+table.login {
+	border: 0px ;
+}
+
+table.data {
+	width:100% ;
+}
+table.data td,th {
+	padding-left: 5px ;
+	padding-top: 2px ;
+	border: 1px solid #cccccc;
+}
+td.label {
+	padding-top: 5px;
+	font-weight: bold;
+}
+td.value {
+	padding-top: 5px ;
+	padding-left: 10px;
+}
+
+/* Form style */
+form label {
+	font-size: 1.2em ;
+	display: inline-block ;
+	width: 120px;
+	font-weight: bold;
+	padding: 5px 0 ;
+}
+
+form input#email, input#nick_name, input#family_name	{
+	display: inline-block;
+	width:300px;
+	background-color: #fafafa ;
+	-webkit-border-radius: 3px ;
+	-moz-border-radius:3px;
+	-border-radius:3px;
+	border: 1px solid #cccccc ;
+	padding-left: 5px ;
+	font-size: 1.1 em;
+}
+
+form input#submit {
+  width: 120px ;
+  display: block;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
+  border:1px solid #d8d8d8;
+  padding: 10px;
+  font-weight:bold;
+  text-align: center;
+  margin-top: 5px;
+  color: #000000;
+  background-color: #f4f4f4;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f4f4f4), color-stop(100%, #e5e5e5));
+  background-image: -webkit-linear-gradient(top, #f4f4f4, #e5e5e5);
+  background-image: -moz-linear-gradient(top, #f4f4f4, #e5e5e5);
+  background-image: -ms-linear-gradient(top, #f4f4f4, #e5e5e5);
+  background-image: -o-linear-gradient(top, #f4f4f4, #e5e5e5);
+  background-image: linear-gradient(top, #f4f4f4, #e5e5e5);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#f4f4f4, endColorstr=#e5e5e5);
+}
+ 
+form input#submit:hover{
+  cursor: pointer;
+  border:1px solid #c1c1c1;
+  background-color: #dbdbdb;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dbdbdb), color-stop(100%, #cccccc));
+  background-image: -webkit-linear-gradient(top, #dbdbdb, #cccccc);
+  background-image: -moz-linear-gradient(top, #dbdbdb, #cccccc);
+  background-image: -ms-linear-gradient(top, #dbdbdb, #cccccc);
+  background-image: -o-linear-gradient(top, #dbdbdb, #cccccc);
+  background-image: linear-gradient(top, #dbdbdb, #cccccc);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#dbdbdb, endColorstr=#cccccc);
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSSE Evaluator</title>
+    <!--<script src="{{ url_for('static',filename='scripts/jquery-2.0.3.js') }}"></script>-->
+
+    <!--<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='tablecloth/assets/css/tablecloth.css') }}"/>
+    <script src="{{ url_for('static',filename='tablecloth/assets/js/jquery.tablesorter.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='tablecloth/assets/js/jquery.tablecloth.js') }}"></script>
+    <script src="{{ url_for('static',filename='tablecloth/assets/js/jquery.metadata.js') }}"></script>
+</head>
+
+<body>
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">BSSE Evaluator</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            {% if g.user.is_authenticated()%}
+            <div class="nav navbar-nav navbar-left">
+                <span class="navbar-text"> Logged in as {{g.user.email}}</span>
+            </div>
+            <div class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav">
+                    <li><a class="navbar-link" href="{{url_for('profile')}}">Profile</a></li>
+                    <li><a class="navbar-link" href="{{url_for('logout')}}">Logout</a></li>
+                    <li class="divider"></li>
+                </ul>
+            </div>
+            {% endif %}
+            {% if not g.user.is_authenticated()%}
+            <div class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav">
+                    <li><a class="navbar-link" href="{{ url_for('login') }}">Login</a></li>
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2 col-md-4 cold-sm-6">
+            <ul class="nav nav-pills nav-stacked">
+                <li><a href="/">Home</a>
+                <li><a href="/candidates">Candidates</a></li>
+                <li><a href="/results">Results</a></li>
+                {% if g.user.get_id() == 'admin@bsse.be' %}
+                <li><a href="/admin">Admin panel</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="col-lg-10 col-md-8 col-sm-6">
+            {% block content %}
+            <div class="jumbotron">
+                <h1>BSSE</h1>
+
+                <p>La BSSE (Bourse de Soutien pour un Stage à l'Etranger) est une initiative regroupant les alumni de
+                    l'Ecole Polytechnique de Bruxelles ayant pour objectif de financer des étudiants qui ont une
+                    opportunité
+                    unique d'effectuer un stage en milieu professionnel à l'étranger.</p>
+
+                <p style="text-align:center;">
+                    <a class="btn btn-default btn-lg" role="button">Learn more</a>
+                    <a class="btn btn-primary btn-lg" role="button" href="/login">Login as evaluator</a>
+                </p>
+            </div>
+            {% endblock %}
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $("table").tablecloth({
+        sortable: true
+    });
+});
+
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('a[href="'+this.location.pathname+'"]').parent().addClass('active');
+});
+
+</script>
+</body>
+</html>

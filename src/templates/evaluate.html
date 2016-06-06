@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{%  block content %}
+
+<div class="alert alert-info alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+    </button>
+    <strong>How to rate a candidate ?</strong>
+    <ul>
+        <li>0 or empty values are not authorized for grades</li>
+        <li>Comments are optional</li>
+        <li>Grades must be between ]0, 5] , and may have 1 decimal (other decimals will be truncated, not
+            rounded).
+        </li>
+    </ul>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Evaluation of {{candidate.name}}
+        <span style="float: right;"><span class="glyphicon glyphicon-plane"></span> {{candidate.destination}}</span>
+    </div>
+    <div class="panel-body">
+        <form id="form" role="form" method="POST" class="form-horizontal">
+            {% for criterion in criteria %}
+            <div class="form-group">
+                <Label for="grade{{criterion.id}}" class="col-sm-3 control-label">{{criterion.name}}</Label>
+
+                <div class="col-sm-1">
+                    <input name="grade-{{criterion.id}}-{{evaluations[criterion.id].id}}" id="grade{{criterion.id}}"
+                           class="form-control changeable required"
+                           value="{{evaluations[criterion.id].grade if evaluations[criterion.id].grade != None}}"/>
+                </div>
+                <div class="col-sm-6">
+                    <input name="comments-{{criterion.id}}-{{evaluations[criterion.id].id}}"
+                           id="comments{{criterion.id}}"
+                           class="form-control changeable"
+                           value="{{evaluations[criterion.id].comments if evaluations[criterion.id].comments != None}}"
+                           placeholder="Explanation"/>
+                </div>
+                <div class="col-sm-2"></div>
+            </div>
+            {% endfor %}
+
+
+            <div class="form-group">
+                <Label class="col-sm-3 control-label">Personnal ranking</Label>
+
+                <div class="col-sm-1">
+                    <input name="ranking" id="ranking" class="form-control required changeable"
+                           value="{{ranking.ranking if ranking.ranking != None}}"/>
+                </div>
+                <div class="col-sm-8"></div>
+            </div>
+
+            <div class="form-group">
+                <button id="saveButton" class="col-sm-offset-3 btn btn-primary" type="submit" disabled="true">Save
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(".changeable").change(function() {
+    var notGood = false ;
+    $(".required").each(function(index, inputBox) {
+        if($(inputBox).val() == "" || $(inputBox).val() == 0) {
+            console.log(index);
+            notGood = true;
+        }
+    });
+    $("#saveButton").attr('disabled', notGood);
+});
+
+</script>
+
+{% endblock %}

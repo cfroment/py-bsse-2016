@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{%  block content %}
+
+<h2 class="bg-info">Candidates</h2>
+
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <div class="panel-title">Overall evaluation progress</div>
+    </div>
+    <div class="panel-body">
+        <div class="progress progress-striped active">
+            <div class="progress-bar" role="progress-bar" aria-valuemin="0" aria-valuemax="100"
+                 aria-valuenow="{{progress}}" style="width: {{progress}}%;">
+                {{progress}}%
+            </div>
+        </div>
+    </div>
+</div>
+<table class="table table-condensed table-striped">
+    <thead>
+    <tr>
+        <th class="{sorter: false}"></th>
+        <th>#</th>
+        <th>Candidate</th>
+        <th class="{sorter: false}">CV</th>
+        <th class="{sorter: false}">Motivation</th>
+        <th class="{sorter: false}">Others</th>
+        <th style="text-align:center;" class="{sorter: false}"><a href="results" role="button" class="btn btn-danger">See
+            results</a></th>
+        <th class="{sorter: false}"></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for candidate in candidates %}
+    <tr>
+        <td style="vertical-align:middle;"><a href="mailto:{{candidate.email}}"><span
+                class="glyphicon glyphicon-envelope"></span></a></td>
+        <td style="vertical-align:middle;">{{candidate.id}}</td>
+        <td style="vertical-align:middle;">{{candidate.name}}</td>
+
+        <td style="...">
+            {% for cv in candidate.cvs %}
+            <a href="{{cv.url}}">CV <span class="glyphicon glyphicon-list-alt"/></a><br/>
+            {% endfor %}
+        </td>
+
+        <td style="vertical-align:middle;">
+            <ul>
+                {% for motivation in candidate.motivations %}
+                <li><a href="{{motivation.url}}">Motivation <span class="glyphicon glyphicon-list-alt"/></a></li>
+                {% endfor %}
+            </ul>
+        </td>
+
+        <td style="...">
+            <ul>
+                {% for other in candidate.others %}
+                <li>Doc <a href="{{other.url}}"><span class="glyphicon glyphicon-list-alt"/></a></li>
+                {% endfor %}
+            </ul>
+        </td>
+
+        <td style="text-align:center; vertical-align:middle;"><a href="evaluate/{{candidate.id}}" role="button"
+                                                                 class="btn btn-primary btn-sm">Evaluate</a></td>
+        <td style="text-align:center; vertical-align:middle;"><a href="report/{{candidate.id}}" role="button"
+                                                                 class="btn btn-success btn-sm">Report</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{%  endblock %}

@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<!-- Panel with ranking -->
+<div class="panel panel-info">
+    <div class="panel-heading"><b>Ranking results</b>
+        <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+    </div>
+    <div class="panel-body">
+        <table class="table table-condensed">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Ranking average</th>
+                <th data-toggle="tooltip" data-placement="top"
+                    title="Rank 1 = 20 points, Rank 2 = 19 points, ...">Ranking points sum
+                </th>
+                <th># Evaluations</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for ranking in ranking_sum %}
+            <tr>
+                <td>{{ranking.NAME}}</td>
+                <td>{{ranking.AVERAGERANKING}}</td>
+                <td>{{ranking.RANKINGSUM}}</td>
+                <td>{{ranking.COUNTRANKING}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="panel panel-info">
+    <div class="panel-heading"><b>System ranking (weighting of the grade averages)</b>
+        <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-condensed">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Points</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for ranking in system_ranking %}
+            <tr>
+                <td>{{ranking.NAME}}</td>
+                <td>{{ranking.RANKING}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Panel with criteria average -->
+<div class="panel panel-info">
+    <div class="panel-heading"><b>Average of the grades per criterion</b>
+        <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-condensed">
+            <thead>
+            <th>Name</th>
+            <th>C1</th>
+            <th>C2</th>
+            <th>C3</th>
+            <th>C4</th>
+            <th>C5</th>
+            </thead>
+            <tbody>
+            {% for name in criteria_average %}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{criteria_average[name][1]}}</td>
+                <td>{{criteria_average[name][2]}}</td>
+                <td>{{criteria_average[name][3]}}</td>
+                <td>{{criteria_average[name][4]}}</td>
+                <td>{{criteria_average[name][5]}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<!-- Panel with missing evaluators -->
+<div class="panel panel-danger">
+    <div class="panel-heading"><b>Missing evaluations for following evaluators</b>
+        <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+    </div>
+    <div class="panel-body">
+        <ol>
+            {% for missing in missing_evaluators%}
+            <li><a href="mailto:{{missing.EMAIL}}">{{missing.NAME}}</a></li>
+            {% endfor %}
+        </ol>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='scripts/bsse.js') }}"></script>
+{% endblock %}
